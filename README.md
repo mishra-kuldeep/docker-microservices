@@ -41,13 +41,9 @@ Each service is:
 git clone https://github.com/mishra-kuldeep/docker-microservices.git
 cd docker-microservices
 
-⚙️ How to Run This Project
-1. Clone the repository
-git clone https://github.com/mishra-kuldeep/docker-microservices.git
-cd docker-microservices
-
 🐳 Run Auth Service (Step-by-Step)
 2. Go to authservice directory
+
 cd authservice
 
 🧾 Create Environment File
@@ -72,7 +68,7 @@ JWT_SECRET → Secret key used to sign JWT tokens
 
 ### Docker Image
 
-![Docker Image](./image-file/dockerimage.png)
+![Docker Image](./images/dockerimage.png)
 
 Run this inside authservice folder:
 
