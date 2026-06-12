@@ -39,27 +39,43 @@ Each service is:
 
 ```bash
 git clone https://github.com/mishra-kuldeep/docker-microservices.git
-cd docker-microservices/authservice
+cd docker-microservices
 
-**Create Environment File**
+⚙️ How to Run This Project
+1. Clone the repository
+git clone https://github.com/mishra-kuldeep/docker-microservices.git
+cd docker-microservices
 
-docker build -t authservice .
+🐳 Run Auth Service (Step-by-Step)
+2. Go to authservice directory
+cd authservice
+
+🧾 Create Environment File
+3. Create .env file
 touch .env
 
-**Add the following variables inside .env**
+## Add the following variables inside `.env`
+
+```env
 PORT=4000
 MONGO_URL=mongodb://mongo:27017/authdb
 JWT_SECRET=mysecretkey
 
-**What this does**
+## What this does
 PORT → Port where the auth service runs
 MONGO_URL → MongoDB connection string used by the service
 JWT_SECRET → Secret key used to sign JWT tokens
-
-**Build Docker image**
+🐳 Docker Setup
+4. Build Docker image
 
 Run this inside authservice folder:
-docker build -t authservice .
 
-**Run container**
+docker build -t authservice .
+5. Run Docker container
 docker run -p 4000:4000 --env-file .env authservice
+
+✅ Result
+
+After running:
+
+http://localhost:4000
