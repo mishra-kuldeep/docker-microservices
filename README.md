@@ -68,7 +68,9 @@ JWT_SECRET → Secret key used to sign JWT tokens
 
 ### Docker Image
 
-![Docker Image](./images/dockerimage.png)
+![Docker Image](https://raw.githubusercontent.com/mishra-kuldeep/docker-microservices/main/images/dockerimage.png)
+![Docker Image](https://raw.githubusercontent.com/mishra-kuldeep/docker-microservices/main/images/dockerrun.png)
+
 
 Run this inside authservice folder:
 
