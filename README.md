@@ -68,6 +68,12 @@ JWT_SECRET → Secret key used to sign JWT tokens
 🐳 Docker Setup
 4. Build Docker image
 
+## 📸 Screenshots
+
+### Docker Image
+
+![Docker Image](./image-file/dockerimage.png)
+
 Run this inside authservice folder:
 
 docker build -t authservice .
