@@ -30,56 +30,75 @@ Each service is:
 - Docker
 - Docker Compose
 
-
 ---
 
 ## ⚙️ How to Run This Project
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/mishra-kuldeep/docker-microservices.git
 cd docker-microservices
+```
 
-🐳 Run Auth Service (Step-by-Step)
-2. Go to authservice directory
+### 2. Go to Auth Service Directory
 
+```bash
 cd authservice
+```
 
-🧾 Create Environment File
-3. Create .env file
+### 3. Create Environment File
+
+```bash
 touch .env
+```
 
-## Add the following variables inside `.env`
+Add the following variables inside `.env`:
 
 ```env
 PORT=4000
 MONGO_URL=mongodb://mongo:27017/authdb
 JWT_SECRET=mysecretkey
+```
 
-## What this does
-PORT → Port where the auth service runs
-MONGO_URL → MongoDB connection string used by the service
-JWT_SECRET → Secret key used to sign JWT tokens
-🐳 Docker Setup
-4. Build Docker image
+**What this does:**
+
+| Variable | Description |
+|---|---|
+| `PORT` | Port where the auth service runs |
+| `MONGO_URL` | MongoDB connection string used by the service |
+| `JWT_SECRET` | Secret key used to sign JWT tokens |
+
+### 4. Build Docker Image
+
+Run this inside the `authservice` folder:
+
+```bash
+docker build -t authservice .
+```
+
+### 5. Run Docker Container
+
+```bash
+docker run -p 4000:4000 --env-file .env authservice
+```
+
+---
+
+## ✅ Result
+
+After running, the service should be accessible at:
+
+http://localhost:4000
+
+---
 
 ## 📸 Screenshots
 
 ### Docker Image
 
 ![Docker Image](https://raw.githubusercontent.com/mishra-kuldeep/docker-microservices/main/images/dockerimage.png)
-![Docker Image](https://raw.githubusercontent.com/mishra-kuldeep/docker-microservices/main/images/dockerrun.png)
 
+### Docker Run
 
-Run this inside authservice folder:
-
-docker build -t authservice .
-5. Run Docker container
-docker run -p 4000:4000 --env-file .env authservice
-
-✅ Result
-
-After running:
-
-http://localhost:4000
+![Docker Run](https://raw.githubusercontent.com/mishra-kuldeep/docker-microservices/main/images/dockerrun.png)
