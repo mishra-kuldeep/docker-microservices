@@ -4,6 +4,8 @@ on:
  push:
   branches : 
     - main
+  paths:
+      - "03-advance/**"
 
 jobs: 
 # Use a pre-configured GitHub-hosted runner

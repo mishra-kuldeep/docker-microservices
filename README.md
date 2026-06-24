@@ -1,11 +1,12 @@
 # Docker Microservices Learning Project
 
-A hands-on Docker project designed to help beginners learn Docker step by step by building and running a simple microservices application.
+A hands-on Docker project designed to help developers learn Docker from fundamentals to CI/CD by building and deploying a simple microservices application.
 
 This repository follows a progressive learning approach:
 
-* **01-Beginner** → Learn Docker fundamentals using Dockerfile and Docker containers.
+* **01-Beginner** → Learn Docker fundamentals using Dockerfiles and containers.
 * **02-Intermediate** → Learn Docker Compose, networking, volumes, and multi-container applications.
+* **03-Advanced** → Learn CI/CD with GitHub Actions and Docker Hub.
 
 ---
 
@@ -16,17 +17,21 @@ docker-microservices/
 │
 ├── 01-beginner/
 │   ├── authservice/
-│   │   ├── Dockerfile
-│   │   └── .dockerignore
-│   │
 │   └── group-service/
-│       ├── Dockerfile
-│       └── .dockerignore
 │
-└── 02-intermediate/
-    ├── authservice/
-    ├── group-service/
-    └── docker-compose.yml
+├── 02-intermediate/
+│   ├── authservice/
+│   ├── group-service/
+│   └── docker-compose.yml
+│
+├── 03-advance/
+│   ├── authservice/
+│   ├── group-service/
+│   └── docker-compose.yml
+│
+└── .github/
+    └── workflows/
+        └── docker-build-push.yml
 ```
 
 ---
@@ -35,20 +40,16 @@ docker-microservices/
 
 ### 01-Beginner
 
-In this section, you'll learn:
-
-* What is Docker?
+* Docker Fundamentals
 * Docker Images
 * Docker Containers
 * Dockerfile
 * .dockerignore
-* Building Docker Images
+* Building Images
 * Running Containers
 * Port Mapping
 
 ### 02-Intermediate
-
-In this section, you'll learn:
 
 * Docker Compose
 * Multi-Container Applications
@@ -57,7 +58,16 @@ In this section, you'll learn:
 * MongoDB Container
 * Docker Volumes
 * Environment Variables
-* Running an Entire Application with a Single Command
+
+### 03-Advanced
+
+* GitHub Actions
+* CI/CD Pipelines
+* Docker Hub Integration
+* GitHub Secrets
+* Docker Image Versioning
+* Automated Docker Builds
+* Automated Docker Image Publishing
 
 ---
 
@@ -68,154 +78,97 @@ In this section, you'll learn:
 * MongoDB
 * Docker
 * Docker Compose
+* GitHub Actions
+* Docker Hub
 
 ---
 
-# 📚 Beginner Level
+# 📚 Advanced Level
 
-Navigate to the beginner folder:
-
-```bash
-cd 01-beginner
-```
-
-Each service contains its own:
-
-* Dockerfile
-* .dockerignore
-
-Build and run services independently to understand how Docker works at the container level.
-
-### Build Auth Service
+Navigate to:
 
 ```bash
-cd authservice
-docker build -t authservice .
+cd 03-advance
 ```
 
-### Run Auth Service
+This section demonstrates how to automate Docker image builds and publish them to Docker Hub using GitHub Actions.
 
-```bash
-docker run -p 3000:3000 authservice
-```
+## CI/CD Workflow
 
-### Build Group Service
-
-```bash
-cd ../group-service
-docker build -t group-service .
-```
-
-### Run Group Service
-
-```bash
-docker run -p 3001:3001 group-service
-```
-
----
-
-# 📚 Intermediate Level
-
-Navigate to the intermediate folder:
-
-```bash
-cd 02-intermediate
-```
-
-This section introduces Docker Compose and runs multiple services together.
-
-### Services Included
-
-* Auth Service
-* Group Service
-* MongoDB
-
-### Start All Services
-
-```bash
-docker compose up --build
-```
-
-Docker Compose will:
-
-* Build all services
-* Create containers
-* Create a Docker network
-* Start MongoDB
-* Connect services together
-
-### Stop All Services
-
-```bash
-docker compose down
-```
-
----
-
-## 🌐 Docker Networking
-
-Docker Compose automatically creates a network for all services.
-
-This allows services to communicate using service names.
-
-Example:
-
-```env
-MONGO_URI=mongodb://mongodb:27017/authdb
-```
-
-Here:
-
-* `mongodb` is the service name
-* No IP address is required
-
----
-
-## 💾 Docker Volumes
-
-MongoDB uses Docker Volumes for persistent storage.
-
-Example:
-
-```yaml
-volumes:
-  mongo-data:
-```
-
-Why use volumes?
-
-Without volumes:
-
-* Container removed → Data lost
-
-With volumes:
-
-* Container removed → Data preserved
-
----
-
-## 🏗️ Architecture
+Whenever code is pushed to the main branch:
 
 ```text
-                Docker Network
-                       │
-       ┌───────────────┼───────────────┐
-       │               │               │
-       ▼               ▼               ▼
+Git Push
+    ↓
+GitHub Actions
+    ↓
+Build Auth Service Image
+    ↓
+Build Group Service Image
+    ↓
+Login to Docker Hub
+    ↓
+Push Images to Docker Hub
+```
 
-  Auth Service    Group Service     MongoDB
-      :3000           :3001          :27017
+## GitHub Secrets Used
+
+```text
+DOCKER_USERNAME
+DOCKER_TOKEN
+```
+
+## Docker Images Published
+
+```text
+<dockerhub-username>/auth-service:latest
+<dockerhub-username>/group-service:latest
+```
+
+## Benefits
+
+* Automatic Docker Builds
+* Automatic Image Publishing
+* No Manual Docker Commands Required
+* Production-style CI/CD Workflow
+
+---
+
+## 🏗️ Complete Architecture
+
+```text
+Developer
+    │
+    ▼
+ GitHub Repository
+    │
+    ▼
+ GitHub Actions
+    │
+    ├── Build auth-service
+    ├── Build group-service
+    │
+    ▼
+ Docker Hub
+    │
+    ▼
+ Deploy Anywhere
+ (Docker / Kubernetes / Cloud)
 ```
 
 ---
 
-## 🎯 Who Is This Project For?
+## 🎯 Learning Roadmap
 
-* Docker Beginners
-* DevOps Beginners
-* Backend Developers
-* Students Learning Microservices
-* Anyone looking to understand Docker through hands-on examples
+```text
+01-Beginner
+      ↓
+02-Intermediate
+      ↓
+03-Advanced (CI/CD)
+      ↓
+04-Kubernetes (Coming Soon)
+```
 
 ---
 
