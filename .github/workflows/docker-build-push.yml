@@ -1,0 +1,28 @@
+name: Build and push docker image to Docker Hub
+
+on: 
+ push:
+  branches : 
+    - main
+
+jobs: 
+# Use a pre-configured GitHub-hosted runner
+  build : 
+    runs-on : ubuntu-latest
+
+    steps : 
+    # Step A: Download a copy of your code onto the runner
+      - name : checkout code
+        uses : actions/checkout@v4
+
+# Step B: Install Node.js on the runner environment
+      - name : install node jobs
+        uses : actions/setup-node@v4
+        with : 
+          node-version : "24"
+# Step C: Install your project dependencies
+      - name : Install dependencies
+        run : npm install
+      
+      - name: Verify Node installation
+        run : node -v
