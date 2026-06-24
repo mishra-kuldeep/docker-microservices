@@ -42,4 +42,25 @@ jobs:
       - name: Verify Docker Login
         run: docker info
 
+# Step E: Docker Build Images of services
+      - name: Build auth-service image
+        run: |
+          docker build \
+            -t ${{ secrets.docker_username }}/auth-service:latest \
+            ./03-advance/authservice
+
+      - name: Build group-service image
+        run: |
+          docker build \
+            -t ${{ secrets.docker_username }}/group-service:latest \
+            ./03-advance/group-service
+
+# Step F: Docker Push images to docker hub
+      - name: Push auth-service image
+        run: |
+          docker push ${{ secrets.docker_username }}/auth-service:latest
+
+      - name: Push group-service image
+        run: |
+          docker push ${{ secrets.docker_username }}/group-service:latest
         
