@@ -20,9 +20,15 @@ jobs:
         uses : actions/setup-node@v4
         with : 
           node-version : "20"
-# Step C: Install your project dependencies
-      - name : Install dependencies
-        run : npm install
+# Step C: Install authservice dependencies
+      - name: Install authservice dependencies
+        working-directory: ./03-advance/authservice
+        run: npm install
+
+# Step D: Install group-service dependencies
+      - name: Install group-service dependencies
+        working-directory: ./03-advance/group-service
+        run: npm install
       
       - name: Verify Node installation
         run : node -v
